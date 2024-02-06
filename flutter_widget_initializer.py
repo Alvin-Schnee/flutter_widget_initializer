@@ -15,26 +15,26 @@ def submit():
     os.makedirs(target_folder)
 
     # Create the three files
-    file_name = file_name.lower()
-    capitalizedName = file_name.capitalize()
+    #file_name = file_name.lower()
+    #capitalizedName = file_name.capitalize()
     files = [f"{file_name}.dart", f"{file_name}_controller.dart", f"{file_name}_bindings.dart"]
     
     contents = {
         f"{file_name}.dart": f"""\
-// {file_name}_widget.dart
+// {file_name}.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '{file_name}_controller.dart';
 
-class {capitalizedName}Widget extends StatelessWidget
+class {file_name} extends StatelessWidget
 {{
-\t{capitalizedName}Widget({{super.key}});\n
-\tfinal controller = {capitalizedName}Controller();\n
+\t{file_name}({{super.key}});\n
+\tfinal controller = {file_name}Controller();\n
 \t@override
 \tWidget build(BuildContext context) {{
 \t\treturn Scaffold
 \t\t(
-\t\t\tappBar: AppBar(title: const Text('{capitalizedName} Widget')),
+\t\t\tappBar: AppBar(title: const Text('{file_name}')),
 \t\t\tbody: Center
 \t\t\t(
 \t\t\t\tchild: Column
@@ -59,7 +59,7 @@ class {capitalizedName}Widget extends StatelessWidget
         f"{file_name}_controller.dart": f"""\
 // {file_name}_controller.dart\n
 import 'package:get/get.dart';\n
-class {capitalizedName}Controller extends GetxController
+class {file_name}Controller extends GetxController
 {{
 \tRxInt count = 0.obs;\n	
 \tvoid increment()
@@ -74,10 +74,10 @@ class {capitalizedName}Controller extends GetxController
 import 'package:get/get.dart';
 import '{file_name}_controller.dart';
 
-class {capitalizedName}Bindings implements Bindings {{
+class {file_name}Bindings implements Bindings {{
 \t@override
 \tvoid dependencies() {{
-\t\tGet.lazyPut<{capitalizedName}Controller>(() => {capitalizedName}Controller());
+\t\tGet.lazyPut<{file_name}Controller>(() => {file_name}Controller());
 \t}}
 }}
 """,
